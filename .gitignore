@@ -1,3 +1,4 @@
 venv/
 consultas_gemini/*
+!consultas_gemini/.gitkeep
 settings/api/settings.json
