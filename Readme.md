@@ -16,7 +16,7 @@ Este repositorio contiene un script sencillo (`app.py`) que usa la SDK de Google
 
 - `app.py` — Script principal que carga la configuración, lee el prompt y escribe la respuesta en `consultas_gemini/reply.md`.
 - `settings/api/settings.json` — Archivo donde almacenamos la API key y otras variables de configuración.
-- `consultas_gemini/ask.md` — Archivo de entrada con el texto/pregunta a enviar a la API (ahora reemplaza a `quest.md`).
+- `consultas_gemini/ask.md` — Archivo de entrada en formato Markdown (`.md`) con el texto/pregunta a enviar a la API (ahora reemplaza a `quest.md`).
 - `consultas_gemini/reply.md` — Resultado de la respuesta (salida), creado por `app.py`.
 - `consultas_gemini/backups/` — Carpeta de respaldo (no necesaria para ejecución), se puede usar para almacenar backups.
 
@@ -206,6 +206,20 @@ py .\app.py
 ```
 
 Observa la consola para la salida en streaming y revisa `consultas_gemini/reply.md` cuando termine.
+
+Antes de ejecutar el script, asegúrate de escribir la consulta que deseas enviar al modelo dentro del archivo `consultas_gemini/ask.md` en formato Markdown (`.md`). El script toma todo el texto del archivo y lo envía tal cual al modelo.
+
+Ejemplo de `consultas_gemini/ask.md` (Markdown):
+
+```markdown
+# ¿Qué modelo eres?
+
+Explícame brevemente qué puede hacer cada modelo y cuál es la diferencia entre ellos.
+```
+
+Consejos:
+- Usa UTF-8 para evitar problemas de encoding (por ejemplo: `encoding='utf-8'` en `open(...)`).
+- Evita caracteres especiales o formatos binarios en `ask.md`.
 
 ---
 
