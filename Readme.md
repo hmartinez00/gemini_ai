@@ -133,6 +133,27 @@ Notas:
 
 ---
 
+## 🧭 Bloque de rutas y validaciones en `app.py`
+
+El script ahora centraliza las rutas usadas en un bloque al inicio usando `pathlib.Path`. Esto hace que el script sea más fácil de mantener y portable entre sistemas:
+
+- `BASE_DIR` — carpeta base calculada para el script.
+- `SETTINGS_PATH` — `settings/api/settings.json`.
+- `ASK_PATH` — `consultas_gemini/ask.md` (archivo de entrada).
+- `REPLY_PATH` — `consultas_gemini/reply.md` (salida del modelo).
+- `BACKUPS_DIR` — `consultas_gemini/backups` (se crea automáticamente si no existe).
+
+Validaciones implementadas por el script:
+- Si `settings/api/settings.json` no existe, el script terminará con un mensaje indicando la ruta esperada.
+- Si la clave `api` no existe en `settings.json`, el script se detiene con un mensaje explicativo.
+- Si `consultas_gemini/ask.md` no existe o está vacío, el script se detiene y pide que crees o completes el archivo.
+- `reply.md` será creado automáticamente en la carpeta `consultas_gemini` y la carpeta `backups` se creará si no existe.
+
+Esto evita errores por rutas o ficheros faltantes y mejora la portabilidad entre Windows y *nix.
+
+
+---
+
 ## ⏸️ Añadir una pausa interactiva: "¿Desea continuar con la iteración?" (opcional)
 
 Si deseas pausar la iteración para confirmar que continúe entre fragmentos (o al finalizar cada chunk), puedes modificar el bucle de streaming con algo como esto:
