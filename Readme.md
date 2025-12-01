@@ -234,17 +234,43 @@ Esto es útil cuando se requiere revisión humana durante la generación o para 
 
 ## 🔍 Pruebas y ejecución rápida
 
-Después de configurar el entorno y la API key, ejecuta el script con:
+Después de configurar el entorno y la API key, puedes ejecutar el script usando varias formas dependiendo de tu necesidad. A continuación se indican los casos más comunes y la sintaxis recomendada (PowerShell en Windows):
+
+1) Ejecutar con rutas por defecto (usa `settings/api/settings.json`, `consultas_gemini/ask.md` y `consultas_gemini/reply.md`):
 
 ```powershell
-# Activar venv
-.\venv\Scripts\Activate
-
-# Ejecutar el script
 py .\app.py
 ```
 
-Observa la consola para la salida en streaming y revisa `consultas_gemini/reply.md` cuando termine.
+2) Ejecutar especificando archivos `ask` y `reply` (esto es lo que has usado):
+
+```powershell
+py .\app.py --ask consultas_gemini\ask.md --reply consultas_gemini\reply.md
+```
+
+3) Ejecutar en modo `dry-run` (solo valida rutas y muestra lo que haría, sin llamar a la API):
+
+```powershell
+py .\app.py --ask consultas_gemini\ask.md --reply consultas_gemini\reply-custom.md --dry-run
+```
+
+4) Ejecutar usando una ruta personalizada para `settings.json` (útil si guardas la key en otra ubicación):
+
+```powershell
+py .\app.py --settings settings\api\settings.json --ask consultas_gemini\ask.md --reply consultas_gemini\reply.md
+```
+
+5) Uso con rutas absolutas (por ejemplo si trabajas con varios proyectos):
+
+```powershell
+py .\app.py --ask "C:\ruta\a\tu\folder\consultas_gemini\ask.md" --reply "C:\ruta\a\tu\folder\consultas_gemini\reply.md"
+```
+
+6) Nota sobre seguridad y buenas prácticas:
+- No subas `settings/api/settings.json` con la API key al repositorio; usa `.gitignore` o variables de entorno si es posible.
+- Si usas `--dry-run` no se consumen tokens ni se hacen llamadas a la API.
+
+Observa la consola para la salida en streaming y revisa el archivo de salida especificado (`reply.md`) cuando termine.
 
 Antes de ejecutar el script, asegúrate de escribir la consulta que deseas enviar al modelo dentro del archivo `consultas_gemini/ask.md` en formato Markdown (`.md`). El script toma todo el texto del archivo y lo envía tal cual al modelo.
 
