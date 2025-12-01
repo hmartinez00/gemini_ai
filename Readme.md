@@ -188,6 +188,24 @@ Esto es útil cuando se requiere revisión humana durante la generación o para 
 
 	Ejemplo para listar modelos disponibles:
 
+								CLI (parámetros):
+
+								Puedes enviar nombres de archivo personalizados al script con los parámetros `--ask` y `--reply`. Ejemplos:
+
+								```powershell
+								# Usar rutas personalizadas para el input y el output
+								py .\app.py --ask consultas_gemini\ask.md --reply consultas_gemini\reply-custom.md
+
+								# Modo dry-run (solo valida rutas y archivos, no llama a la API)
+								py .\app.py --ask consultas_gemini\ask.md --reply consultas_gemini\reply-custom.md --dry-run
+								```
+
+								Nota: Si prefieres, también puedes especificar una ruta personalizada para el `settings.json` con `--settings`:
+
+								```powershell
+								py .\app.py --settings settings\api\settings.json --ask consultas_gemini\ask.md --reply consultas_gemini\reply.md
+								```
+
 	```python
 	from google import genai
 	import json
