@@ -4,7 +4,7 @@ from PIL import Image
 
 prompt =  "Create a picture of a nano banana dish in a fancy restaurant with a Gemini theme"
 
-client = genai.Client(api_key="AIzaSyAEtsoD2w9OKC0S4lw85S0JEKo6r2K0JO4")
+client = genai.Client(api_key="YOUR-API-KEY")
 
 response = client.models.generate_content(
     model="gemini-2.5-flash-image",
