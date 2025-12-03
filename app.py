@@ -83,10 +83,11 @@ def main():
     try:
         # Obtenemos la respuesta en streaming
         response_stream = client.models.generate_content_stream(
-        model='gemini-2.0-flash-001',
+        # model='gemini-2.0-flash-001',
+        model='gemini-2.5-flash',
         contents=types.Part.from_text(text=quest),
         config=types.GenerateContentConfig(
-            temperature=0,
+            temperature=1,
             top_p=0.95,
             top_k=20,
         ),
